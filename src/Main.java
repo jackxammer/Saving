@@ -1,7 +1,4 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,6 +26,8 @@ public class Main {
         }
 
         zipFiles("/home/jackxammer/Documents/Games/savegames/zip.zip", saveFiles);
+
+        clearSaveData(saveFiles);
     }
 
     public static void saveGame(String path, GameProgress progress) {
@@ -58,6 +57,13 @@ public class Main {
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void clearSaveData (List<String> savedData) {
+        for (String name: savedData) {
+            File file = new File(name);
+            file.delete();
         }
     }
 }
